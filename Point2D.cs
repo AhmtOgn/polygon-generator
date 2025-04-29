@@ -46,10 +46,10 @@ namespace polygon
 			X = (int)(r * Math.Cos(theta));
 			Y = (int)(r * Math.Sin(theta));
 		}
-		public void printPolarCordianets()
+		public string printPolarCordianets()
 		{
 			
-			Console.WriteLine("R: " + r + " Theta: " + theta);
+			return "R: " + r + " Theta: " + theta;
 		}
 	}
 }
