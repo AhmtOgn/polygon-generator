@@ -15,13 +15,20 @@ namespace polygon
 
 		public Polygon()
 		{
+			center = new Point2D();
+			lenght = 4;
+			color = new ColorRGB();
+			numberOfEdges = 5;
+			
 
 		}
 		
 		public Polygon(Point2D _center, int _lenght)
 		{
 			this.center = _center;
-			this.lenght = _lenght;	
+			this.lenght = _lenght;
+			
+			
 		}
 
 		public void calculateEdgeCoordinates()

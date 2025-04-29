@@ -14,7 +14,7 @@ namespace polygon
 
 			if (int.TryParse(xText, out int xValue) && int.TryParse(yText, out int yValue)) //Checks if the user input is convertible to int
 			{
-				
+
 				if (0 <= xValue && xValue <= 3 && 0 <= yValue && yValue <= 3) //Checks if the range correct
 				{
 					// If the conversion is successful, we can now create an instance of our Point2D class
@@ -28,7 +28,7 @@ namespace polygon
 					string pCordinates = pointP.printCordinates();
 
 					MessageBox.Show(
-						pCordinates,									//Message
+						pCordinates,                                           //Message
 						"Point Coordinates",                                   //Title
 						MessageBoxButtons.OK,                                  //Button for ok
 						MessageBoxIcon.Information                             //Information icon
@@ -38,9 +38,9 @@ namespace polygon
 				{
 					MessageBox.Show(
 						"Please enter numeric values between [0-3} for X and Y.",   //Message		
-						"ERROR!",											//Title 
-						MessageBoxButtons.OK,								//Button for ok
-						MessageBoxIcon.Error								//Error icon
+						"ERROR!",                                                   //Title 
+						MessageBoxButtons.OK,                                       //Button for ok
+						MessageBoxIcon.Error                                        //Error icon
 					);
 				}
 
@@ -51,12 +51,17 @@ namespace polygon
 				// If the conversion fails (e.g., the user entered text that's not a number),
 				// it's good practice to show an error message to the user.
 				MessageBox.Show(
-					"Please enter valid numeric values for X and Y." ,	//Message
+					"Please enter valid numeric values for X and Y.", //Message
 					"ERROR!",                                              //Title 
-					MessageBoxButtons.OK,							//Button for ok
-					MessageBoxIcon.Error							//Error icon
-					); 
+					MessageBoxButtons.OK,                                  //Button for ok
+					MessageBoxIcon.Error                                   //Error icon
+					);
 			}
+		}
+
+		private void checkBoxCCW_CheckedChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
