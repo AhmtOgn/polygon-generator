@@ -8,23 +8,33 @@ namespace polygon
 {
     class ColorRGB
     {
-		int red { set; get; }
-		int green { set; get; }
-		int blue { set; get; }
+		public int red { set; get; }
+		public int green { set; get; }
+		public int blue { set; get; }
 		
 		Random rnd = new Random();
+
+		public ColorRGB()
+		{
+			red = green = blue = 0;
+		}
 		public ColorRGB(int _red, int _green, int _blue)
 		{
 			this.red = _red;
 			this.green = _green;
 			this.blue = _blue;
 		}
-		public ColorRGB()
+		public ColorRGB(Random rnd)
 		{
 			
 			green = rnd.Next(0, 256);
 			red = rnd.Next(0, 256);
 			blue = rnd.Next(0, 256);
+		}
+
+		public Color ToColor()
+		{
+			return Color.FromArgb(red, green, blue);
 		}
 	}
 }

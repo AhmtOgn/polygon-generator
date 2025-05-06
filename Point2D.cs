@@ -19,10 +19,10 @@
 
 			private static Random rnd = new Random();
 		
-			public Point2D(int x , int y) //between [0-3]
+			public Point2D(double x , double y) //between [0-3]
 			{
-				this.X = x;
-				this.Y = y;
+				this.X = (int) x;
+				this.Y = (int) y;
 				calculatePolarCordinates();
 			}
 
