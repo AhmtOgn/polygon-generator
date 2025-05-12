@@ -7,31 +7,52 @@ namespace polygon
 		public Form1()
 		{
 			InitializeComponent();
-			ResetValues();
+			//ResetValues();
 		}
 
 		void ResetValues()
 		{
+			
 			polygon = new Polygon();
-			polygon.center = new Point2D(rnd.Next(0, 4), rnd.Next(-3, 4));
-			polygon.length = rnd.Next(3, 10);
-			polygon.numberOfEdges = rnd.Next(3, 11);
+			polygon.center = new Point2D(0, 0, true);
+
+			polygon.Length = 5;
+			polygon.NumberOfEdges = 5;
+			polygon.color = new ColorRGB(rnd);
+
+			// Now update UI with safe values
+			trackBarRED.Value = 0;
+			trackBarGREEN.Value = 0;
+			trackBarBLUE.Value = 0;
+			textBoxX.Text = polygon.center.X.ToString();
+			textBoxY.Text = polygon.center.Y.ToString();
+			textBoxLength.Text = polygon.Length.ToString();
+			textBoxEdges.Text = polygon.NumberOfEdges.ToString();
+			textBoxAngel.Text = "30";
+		
+
+			/*
+			polygon = new Polygon();
+			polygon.center = new Point2D(double.Parse(textBoxX.Text), double.Parse(textBoxY.Text), true);
+			polygon.Length = rnd.Next(3, 10);
+			polygon.NumberOfEdges = rnd.Next(3, 11);
 			polygon.color = new ColorRGB(rnd);
 			trackBarRED.Value = polygon.color.red;
 			trackBarGREEN.Value = polygon.color.green;
 			trackBarBLUE.Value = polygon.color.blue;
 			textBoxX.Text = polygon.center.X.ToString();
 			textBoxY.Text = polygon.center.Y.ToString();
-			textBoxLength.Text = polygon.length.ToString();
-			textBoxEdges.Text = polygon.numberOfEdges.ToString();
+			textBoxLength.Text = polygon.Length.ToString();
+			textBoxEdges.Text = polygon.NumberOfEdges.ToString();
 			textBoxAngel.Text = "30";
+			*/
 		}
 
 		void DrawPolygon()
 		{
-			polygon.center = new Point2D(double.Parse(textBoxX.Text), double.Parse(textBoxY.Text));
-			polygon.length = int.Parse(textBoxLength.Text);
-			polygon.numberOfEdges = int.Parse(textBoxEdges.Text);
+			polygon.center = new Point2D(double.Parse(textBoxX.Text), double.Parse(textBoxY.Text), true);
+			polygon.Length = int.Parse(textBoxLength.Text);
+			polygon.NumberOfEdges = int.Parse(textBoxEdges.Text);
 			polygon.color = new ColorRGB(trackBarRED.Value, trackBarGREEN.Value, trackBarBLUE.Value);
 			polygon.calculateEdgeCoordinates();
 
@@ -46,7 +67,7 @@ namespace polygon
 			{
 				g.Clear(Color.White);
 
-				float scale = 40f; // 1 birim = 40 piksel
+				float scale = 20f; // 1 birim = 20 piksel
 				Pen pen = new Pen(polygon.color.ToColor(), 3);
 
 				PointF[] points = new PointF[polygon.Vertices.Count];

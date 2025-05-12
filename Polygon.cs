@@ -8,10 +8,48 @@ namespace polygon
 {
 	class Polygon
 	{
-		public Point2D center { set; get; }
-		public int length { set; get; }
-		public ColorRGB color { set; get; }
-		public int numberOfEdges { set; get; }
+		private int numberOfEdges;
+		private int length;
+		public Point2D center { set; get; } //todo: check if it in between 0-3
+		public ColorRGB color { set; get; } //todo: when clicked draw every time change the color as random 
+		public int Length
+		{
+			set
+			{
+				if (3 <= value && value <= 10)
+				{
+					length = value;
+				}
+				else
+				{
+					MessageBox.Show("Length must be between 3 and 10", "Invalid Length!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			get
+			{
+				return length;
+			}
+		}	 
+		
+		public int NumberOfEdges 
+		{
+
+			set
+			{
+				if (3 <= value && value <= 10)
+				{
+					numberOfEdges = value;
+				}
+				else
+				{
+					MessageBox.Show("Number of edges must be between 3 and 10" , "Invalid Edge Number!" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			get
+			{
+				return numberOfEdges;
+			} 
+		}
 		public List<Point2D> Vertices { get; set; }
 
 		public Polygon()
@@ -43,7 +81,7 @@ namespace polygon
 				double rad = angle * Math.PI / 180;
 				double x = center.X + length * Math.Cos(rad);
 				double y = center.Y + length * Math.Sin(rad);
-				Vertices.Add(new Point2D(x, y));
+				Vertices.Add(new Point2D(x, y, true));
 			}
 		}
 
@@ -61,7 +99,7 @@ namespace polygon
 				double rad = theta * Math.PI / 180;
 				double x = center.X + r * Math.Cos(rad);
 				double y = center.Y + r * Math.Sin(rad);
-				newVertices.Add(new Point2D(x, y));
+				newVertices.Add(new Point2D(x, y, true));
 			}
 			Vertices = newVertices;
 
