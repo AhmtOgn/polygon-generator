@@ -9,32 +9,52 @@ namespace polygon
 	class Point2D
 	{
 		private const double PI = Math.PI;
-		private double x;
-		private double y;
-		public double X { get; set; }
-		public double Y { get; set; }
+		private int x;
+		private int y;
+		public int X 
+		{
+			set
+			{
+				if (value < 0 || value > 3)
+					throw new ArgumentOutOfRangeException("X", "X must be between 0 and 3");
+				x = value;
+			}
+			get { return x; }
+		}
+		public int Y
+		{
+			set
+			{
+				if (value < -3 || value > 0 )
+					throw new ArgumentOutOfRangeException("Y", "Y must be between -3 and 0");
+				y = value;
+			}
+			get	{ return y; }
+		}
 		public double R { private set; get; }
 		public double Theta { private set; get; }
 
 		private static Random rnd = new Random();
-		public Point2D(double x, double y, bool enforceRange) //between [0-3]
+		public Point2D(double x, double y, bool isForCenter) // Without isForCenter, It can be an error because edge cordinates not between 0 and 3
 		{
-			if (enforceRange && (x < 0 || x > 3 || y < 0 || y > 3))
+			if (isForCenter)
 			{
-				MessageBox.Show("X and Y must be between 0 and 3", "Invalid Point", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				X = (int)Math.Round(x);
+				Y = (int)Math.Round(y);
+				calculatePolarCordinates();
 			}
-
-			X = x;
-			Y = y;
-			calculatePolarCordinates();
-
-			
+			else
+			{
+				x = (int)Math.Round(x);
+				y = (int)Math.Round(y);
+				calculatePolarCordinates();
+			}
 		}
 
 		public Point2D()
 		{
-			this.X = rnd.Next(0, 4);
-			this.Y = rnd.Next(0, 4);
+			this.x = rnd.Next(0, 4);
+			this.y = rnd.Next(-3, 1);
 			calculatePolarCordinates();
 		}
 		public string printCordinates()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,45 +11,45 @@ namespace polygon
 	{
 		private int numberOfEdges;
 		private int length;
-		public Point2D center { set; get; } //todo: check if it in between 0-3
-		public ColorRGB color { set; get; } //todo: when clicked draw every time change the color as random 
+		public Point2D center { set; get; }
+		public ColorRGB color { set; get; }
 		public int Length
 		{
 			set
 			{
-				if (3 <= value && value <= 10)
+				if (value < 3 || value > 9)
 				{
-					length = value;
+					MessageBox.Show("Length must be between 3 and 10", "Invalid Length!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				else
 				{
-					MessageBox.Show("Length must be between 3 and 10", "Invalid Length!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					length = value;
 				}
 			}
 			get
 			{
 				return length;
 			}
-		}	 
-		
-		public int NumberOfEdges 
+		}
+
+		public int NumberOfEdges
 		{
 
 			set
 			{
-				if (3 <= value && value <= 10)
+				if (value < 3 || value > 10)
 				{
-					numberOfEdges = value;
+					MessageBox.Show("Number of edges must be between 3 and 10", "Invalid Edge Number!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				else
 				{
-					MessageBox.Show("Number of edges must be between 3 and 10" , "Invalid Edge Number!" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+					numberOfEdges = value;
 				}
 			}
 			get
 			{
 				return numberOfEdges;
-			} 
+			}
 		}
 		public List<Point2D> Vertices { get; set; }
 
@@ -61,48 +62,19 @@ namespace polygon
 			Vertices = new List<Point2D>();
 		}
 
-		public Polygon(Point2D _center, int _lenght)
+		public Polygon(Point2D center, int lenght)
 		{
-			this.center = _center;
-			this.length = _lenght;
+			this.center = center;
+			this.length = lenght;
 			color = new ColorRGB();
 			numberOfEdges = 5;
 			Vertices = new List<Point2D>();
 		}
 
-		public void calculateEdgeCoordinates()
-		{
-			Vertices.Clear();
-			Random rnd = new Random();
-			double startAngle = rnd.Next(360);
-			for (int i = 0; i < numberOfEdges; i++)
-			{
-				double angle = startAngle + i * 360.0 / numberOfEdges;
-				double rad = angle * Math.PI / 180;
-				double x = center.X + length * Math.Cos(rad);
-				double y = center.Y + length * Math.Sin(rad);
-				Vertices.Add(new Point2D(x, y, true));
-			}
-		}
+		public void CalculateEdgeCordinates() { }
+		public void DrawPolygon() { }
+		public void RotatePolygon() { }
 
-		public void rotatePolygon(double angle, bool ccw)
-		{
-			double angleOffset = ccw ? angle : -angle;
-			List<Point2D> newVertices = new List<Point2D>();
-			foreach (var pt in Vertices)
-			{
-				double dx = pt.X - center.X;
-				double dy = pt.Y - center.Y;
-				double r = Math.Sqrt(dx * dx + dy * dy);
-				double theta = Math.Atan2(dy, dx) * 180 / Math.PI;
-				theta += angleOffset;
-				double rad = theta * Math.PI / 180;
-				double x = center.X + r * Math.Cos(rad);
-				double y = center.Y + r * Math.Sin(rad);
-				newVertices.Add(new Point2D(x, y, true));
-			}
-			Vertices = newVertices;
-
-		}
+		
 	}
 }

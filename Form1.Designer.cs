@@ -87,7 +87,7 @@
 			// textBoxY
 			// 
 			textBoxY.Location = new Point(945, 65);
-			textBoxY.MaxLength = 1;
+			textBoxY.MaxLength = 2;
 			textBoxY.Name = "textBoxY";
 			textBoxY.Size = new Size(36, 23);
 			textBoxY.TabIndex = 3;
@@ -117,17 +117,18 @@
 			// label2
 			// 
 			label2.AutoSize = true;
-			label2.Location = new Point(827, 130);
+			label2.Location = new Point(829, 130);
 			label2.Name = "label2";
 			label2.Size = new Size(44, 15);
 			label2.TabIndex = 4;
-			label2.Text = "Lenght";
+			label2.Text = "Length";
 			// 
 			// textBoxLength
 			// 
 			textBoxLength.Location = new Point(887, 122);
 			textBoxLength.MaxLength = 1;
 			textBoxLength.Name = "textBoxLength";
+			textBoxLength.ShortcutsEnabled = false;
 			textBoxLength.Size = new Size(94, 23);
 			textBoxLength.TabIndex = 5;
 			textBoxLength.Text = "4";
@@ -209,15 +210,12 @@
 			// checkBoxCCW
 			// 
 			checkBoxCCW.AutoSize = true;
-			checkBoxCCW.Checked = true;
-			checkBoxCCW.CheckState = CheckState.Checked;
-			checkBoxCCW.Location = new Point(955, 340);
+			checkBoxCCW.Location = new Point(945, 375);
 			checkBoxCCW.Name = "checkBoxCCW";
 			checkBoxCCW.Size = new Size(53, 19);
 			checkBoxCCW.TabIndex = 14;
 			checkBoxCCW.Text = "CCW";
 			checkBoxCCW.UseVisualStyleBackColor = true;
-			checkBoxCCW.CheckedChanged += checkBoxCCW_CheckedChanged;
 			// 
 			// textBoxAngel
 			// 

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace polygon
 {
-	// todo: create a button in the name of "Use random Colors"
     class ColorRGB
     {
 		public int red { set; get; }
@@ -19,11 +18,11 @@ namespace polygon
 		{
 			red = green = blue = 0;
 		}
-		public ColorRGB(int _red, int _green, int _blue)
+		public ColorRGB(int red, int green, int blue)
 		{
-			this.red = _red;
-			this.green = _green;
-			this.blue = _blue;
+			this.red = red;
+			this.green = green;
+			this.blue = blue;
 		}
 		public ColorRGB(Random rnd)
 		{
