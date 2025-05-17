@@ -258,6 +258,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
+			BackColor = SystemColors.ButtonFace;
 			ClientSize = new Size(1037, 659);
 			Controls.Add(pictureBox);
 			Controls.Add(listBoxVertices);

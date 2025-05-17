@@ -9,9 +9,9 @@ namespace polygon
 	class Point2D
 	{
 		private const double PI = Math.PI;
-		private int x;
-		private int y;
-		public int X 
+		private double x;
+		private double y;
+		public double X 
 		{
 			set
 			{
@@ -21,7 +21,7 @@ namespace polygon
 			}
 			get { return x; }
 		}
-		public int Y
+		public double Y
 		{
 			set
 			{
@@ -39,22 +39,21 @@ namespace polygon
 		{
 			if (isForCenter)
 			{
-				X = (int)Math.Round(x);
-				Y = (int)Math.Round(y);
-				calculatePolarCordinates();
+				X = x;
+				Y = y;
 			}
 			else
 			{
-				x = (int)Math.Round(x);
-				y = (int)Math.Round(y);
-				calculatePolarCordinates();
+				this.x = x;
+				this.y = y;
 			}
+			calculatePolarCordinates();
 		}
 
 		public Point2D()
 		{
-			this.x = rnd.Next(0, 4);
-			this.y = rnd.Next(-3, 1);
+			this.X = rnd.Next(0, 4);
+			this.Y = rnd.Next(-3, 1);
 			calculatePolarCordinates();
 		}
 		public string printCordinates()
