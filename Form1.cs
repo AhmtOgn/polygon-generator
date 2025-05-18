@@ -1,8 +1,14 @@
+//***************************************************************************
+//															**
+//			STUDENT NAME.............:	AHMET OGAN				**
+//			STUDENT NUMBER...........:	B231202030				**
+//***************************************************************************
+
 using System.Windows.Forms;
 
 namespace polygon
 {
-		public partial class Form1 : Form
+		public partial class Form1 : Form 
 		{
 			Polygon polygon;
 			Random rnd = new Random();
@@ -13,8 +19,8 @@ namespace polygon
 				ResetValues();
 			}
 
-			void ResetValues()
-			{	
+			void ResetValues() //Method to reset the values of the polygon
+		{	
 				polygon = new Polygon();
 				polygon.center = new Point2D();
 				polygon.Length = rnd.Next(3, 10);
@@ -32,15 +38,16 @@ namespace polygon
 			}
 
 
-		private void buttonDraw_Click(object sender, EventArgs e)
+		private void buttonDraw_Click(object sender, EventArgs e) // Button to draw polygon 
 		{
+			// Check if the values are valid, and if not, show a message box and polygon are not drawn
 			try
 			{
 				double x = double.Parse(textBoxX.Text);
 				double y = double.Parse(textBoxY.Text);
 
-				polygon.center = new Point2D(x, y, true); // burada setter devreye girer
-				//Invalidate(); // yeniden çiz (gerekiyorsa)
+				polygon.center = new Point2D(x, y, true); 
+				
 			}
 			catch (ArgumentOutOfRangeException ex)
 			{
@@ -66,17 +73,17 @@ namespace polygon
 
 
 
-		private void buttonRotate_Click(object sender, EventArgs e)
+		private void buttonRotate_Click(object sender, EventArgs e) // Button to rotate the polygon
 		{
 			if (polygon.Vertices.Count == 0)
 			{
-				buttonReset_Click(sender, e); // veya ResetValues()
+				buttonReset_Click(sender, e);
 			}
 
 			double angle = double.Parse(textBoxAngel.Text);
-			bool isCCW = checkBoxCCW.Checked;
+			bool isCCW = checkBoxCCW.Checked; // Checks if CW or CCW is
 
-			polygon.RotatePolygon(angle, isCCW);
+			polygon.RotatePolygon(angle, isCCW); 
 			polygon.DrawPolygon(pictureBox);
 
 			listBoxVertices.Items.Clear();
@@ -88,8 +95,8 @@ namespace polygon
 		}
 
 
-		private void buttonReset_Click(object sender, EventArgs e)
-			{
+		private void buttonReset_Click(object sender, EventArgs e) // Button to reset the values of polygon
+		{
 				ResetValues();
 			}
 		}

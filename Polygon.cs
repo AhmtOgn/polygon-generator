@@ -1,4 +1,10 @@
-﻿using System;
+﻿//***************************************************************************
+//															**
+//			STUDENT NAME.............:	AHMET OGAN				**
+//			STUDENT NUMBER...........:	B231202030				**
+//***************************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,17 +13,17 @@ using System.Threading.Tasks;
 
 namespace polygon
 {
-	class Polygon
+	class Polygon // Class for Polygon
 	{
 		Random rnd = new Random();
 
-		private int numberOfEdges;
+		private int numberOfEdges; //
 		private int length;
 		public Point2D center { set; get; }
 		public ColorRGB color { set; get; }
-		public int Length
+		public int Length 
 		{
-			set
+			set //// Setter that checks if value is between 3 and 9
 			{
 				if (value < 3 || value > 9)
 				{
@@ -37,7 +43,7 @@ namespace polygon
 		public int NumberOfEdges
 		{
 
-			set
+			set //// Setter that checks if the value is between 3 and 10
 			{
 				if (value < 3 || value > 10)
 				{
@@ -53,9 +59,9 @@ namespace polygon
 				return numberOfEdges;
 			}
 		}
-		public List<Point2D> Vertices { get; set; }
+		public List<Point2D> Vertices { get; set; } // Creates a list for Vertices
 
-		public Polygon()
+		public Polygon() // Constructor to set default values for polygon 
 		{
 			center = new Point2D();
 			length = 4;
@@ -64,7 +70,7 @@ namespace polygon
 			Vertices = new List<Point2D>();
 		}
 
-		public Polygon(Point2D center, int lenght)
+		public Polygon(Point2D center, int lenght) // Constructor to set default values and the values that are tooken from user
 		{
 			this.center = center;
 			this.length = lenght;
@@ -75,13 +81,13 @@ namespace polygon
 
 
 
-		public void CalculateEdgeCordinates()
+		public void CalculateEdgeCordinates() // Method to calculate edge cordinate and save them to the list 
 		{
 			Vertices.Clear();
-			double angleStep = 2 * Math.PI / numberOfEdges; //
-			double startAngle = rnd.NextDouble() * 2 * Math.PI; // rastgele başlangıç açısı
+			double angleStep = 2 * Math.PI / numberOfEdges; // Calculates interior angles of polygons 
+			double startAngle = rnd.NextDouble() * 2 * Math.PI; // rnd.NextDouble gives a random number between 0 and 360 degrees. So it begins to calculate cordinates from random points. So the rotation will be changed everytime
 
-			for (int i = 0; i < numberOfEdges; i++)
+			for (int i = 0; i < numberOfEdges; i++) // Loop to calculate every edge 
 			{
 				double angle = startAngle + i * angleStep;
 				double x = center.X + length * Math.Cos(angle);
@@ -91,24 +97,23 @@ namespace polygon
 		}
 
 
-		public void DrawPolygon(PictureBox pictureBox)
+		public void DrawPolygon(PictureBox pictureBox) // Method to draw polygon into picture box 
 		{
 			Graphics g = pictureBox.CreateGraphics();
-			g.Clear(pictureBox.BackColor); // Önceki çizimleri sil
+			g.Clear(pictureBox.BackColor); // Deletes old draws 
 
-			if (Vertices.Count == 0) return;
+			if (Vertices.Count == 0) return; // If there are no vertice it will not be drawn 
 
 			Bitmap bmp = new Bitmap(pictureBox.Width, pictureBox.Height);
 			using (g = Graphics.FromImage(bmp))
 			{
 				g.Clear(Color.White);
 
-				// Merkez (0,0) olacak şekilde ortala
 				double centerX = pictureBox.Width / 2;
 				double centerY = pictureBox.Height / 2;
 
 				Pen pen = new Pen(Color.FromArgb(color.red, color.green, color.blue), 2);
-				Point[] points = Vertices.Select(v => new Point((int)(centerX + v.X * 20), (int)(centerY - v.Y * 20))).ToArray(); // ölçekle ve Y ters çevir
+				Point[] points = Vertices.Select(v => new Point((int)(centerX + v.X * 20), (int)(centerY - v.Y * 20))).ToArray(); 
 
 
 				if (points.Length > 1)
@@ -123,7 +128,7 @@ namespace polygon
 		}
 
 
-		public void RotatePolygon(double angleDegrees, bool isCCW)
+		public void RotatePolygon(double angleDegrees, bool isCCW) // Method to rotate polygon with parametes that are how many degrees will be rotated and whether CW or CWW is
 		{
 			if (Vertices.Count == 0) return;
 
