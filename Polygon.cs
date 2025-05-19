@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace polygon
 {
-	class Polygon // Class for Polygon
+	class Polygon // Class for Polygon that has 
 	{
 		Random rnd = new Random();
 
@@ -21,13 +21,13 @@ namespace polygon
 		private int length;
 		public Point2D center { set; get; }
 		public ColorRGB color { set; get; }
-		public int Length 
+		public int Length
 		{
 			set //// Setter that checks if value is between 3 and 9
 			{
 				if (value < 3 || value > 9)
 				{
-					MessageBox.Show("Length must be between 3 and 10", "Invalid Length!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					throw new ArgumentOutOfRangeException("Length must be between 3 and 9!");
 				}
 				else
 				{
@@ -47,7 +47,7 @@ namespace polygon
 			{
 				if (value < 3 || value > 10)
 				{
-					MessageBox.Show("Number of edges must be between 3 and 10", "Invalid Edge Number!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					throw new ArgumentOutOfRangeException("Number of edges must be between 3 and 10!");
 				}
 				else
 				{
@@ -78,7 +78,6 @@ namespace polygon
 			numberOfEdges = 5;
 			Vertices = new List<Point2D>();
 		}
-
 
 
 		public void CalculateEdgeCordinates() // Method to calculate edge cordinate and save them to the list 
@@ -113,7 +112,7 @@ namespace polygon
 				double centerY = pictureBox.Height / 2;
 
 				Pen pen = new Pen(Color.FromArgb(color.red, color.green, color.blue), 2);
-				Point[] points = Vertices.Select(v => new Point((int)(centerX + v.X * 20), (int)(centerY - v.Y * 20))).ToArray(); 
+				Point[] points = Vertices.Select(v => new Point((int)(centerX + v.X * 20), (int)(centerY - v.Y * 20))).ToArray();
 
 
 				if (points.Length > 1)
@@ -121,7 +120,7 @@ namespace polygon
 					g.DrawPolygon(pen, points);
 				}
 
-				
+
 			}
 
 			pictureBox.Image = bmp;

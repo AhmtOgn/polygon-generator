@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace polygon
 {
-    class ColorRGB // Class to represent RGB color values
+	class ColorRGB // Class to represent RGB color values
 	{
-		public int red { set; get; }
-		public int green { set; get; }
-		public int blue { set; get; }
-		
-		Random rnd = new Random();
+		public int red { set; get; } // Private red variables
+		public int green { set; get; } // Private green variables
+		public int blue { set; get; } // Private blue variables
 
-		public ColorRGB() // Constructor to set default color values
+		Random rnd = new Random(); // Generate random values
+
+		public ColorRGB() // Constructor to set default color values (0)
 		{
 			red = green = blue = 0;
 		}
